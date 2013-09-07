@@ -1,0 +1,73 @@
+﻿.Navigator
+{
+    margin-top: 0;
+    margin-left: 0;
+    float: left;
+    padding: 0;
+    vertical-align: middle;
+}
+.Advertisement
+{
+    /*margin:0px,10px,0px,0px;*/
+    margin-top: 10px;
+    float: right;
+}
+.MasterForm
+{
+    margin: 0 auto;
+}
+.Footer
+{
+    float: left;
+}
+body
+{
+    margin: 0 auto;
+}
+ul.Navigator li
+{
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    position: relative;
+}
+.MainContent
+{
+    margin: 0 auto;
+    color: White;
+    width: 564px;
+    float: left;
+    font-size: small;
+}
+.wrapperLeft
+{
+    float: left;
+    padding: 2px;
+}
+.wrapperLeft p
+{
+    margin: 0px;
+    text-align: center;
+}
+.wrapperRight
+{
+    float: right;
+    padding: 2px;
+}
+.wrapperRight p
+{
+    margin: 0px;
+    text-align: center;
+}
+.wrapperCentered {
+    text-align: center;
+    margin: 0 auto;
+    padding: 2px;
+}
+.wrapperCentered p {
+    text-align: center;
+    margin: 0px;
+}
+.tallerPhoto{
+	margin-bottom : 30px;
+}
