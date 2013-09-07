@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Web_GTF", ".", "{B212125C-3A2D-4A15-85FC-A05AC79A8858}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/WebSite GTF"
+		Debug.AspNetCompiler.PhysicalPath = "..\Web_GTF\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\WebSite GTF\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/WebSite GTF"
+		Release.AspNetCompiler.PhysicalPath = "..\Web_GTF\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\WebSite GTF\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "10073"
+		ProjOutputReferences = "{672B5DA7-CDEA-4052-8266-364A16933681}|ClientBin|false;"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittlePhotoGallery", "LittlePhotoGallery\LittlePhotoGallery.csproj", "{672B5DA7-CDEA-4052-8266-364A16933681}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B212125C-3A2D-4A15-85FC-A05AC79A8858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B212125C-3A2D-4A15-85FC-A05AC79A8858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B212125C-3A2D-4A15-85FC-A05AC79A8858}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B212125C-3A2D-4A15-85FC-A05AC79A8858}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{672B5DA7-CDEA-4052-8266-364A16933681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{672B5DA7-CDEA-4052-8266-364A16933681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{672B5DA7-CDEA-4052-8266-364A16933681}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
