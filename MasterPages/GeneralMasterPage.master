@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<%@ Master Language="C#" %>
+
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>GTF - Sudam&eacute;rica .::| |::.</title>
+    <link rel="stylesheet" href="../Styles/Display.css" type="text/css" />
+    <link rel="stylesheet" href="../Styles/Layout.css" type="text/css" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/ico" />
+    <script type="text/javascript" src="Scripts/jquery.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script type="text/javascript">
+<!--
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es'
+            }, 'google_translate_element');
+        }
+
+// -->
+    </script>
+    <script type="text/javascript" src="Silverlight.js"></script>
+    <script type="text/javascript">
+        function onSilverlightError(sender, args) {
+            var appSource = "";
+            if (sender != null && sender != 0) {
+                appSource = sender.getHost().Source;
+            }
+
+            var errorType = args.ErrorType;
+            var iErrorCode = args.ErrorCode;
+
+            if (errorType == "ImageError" || errorType == "MediaError") {
+                return;
+            }
+
+            var errMsg = "Error no manejado en la aplicación Silverlight " + appSource + "\n";
+
+            errMsg += "Código: " + iErrorCode + "    \n";
+            errMsg += "Categoría: " + errorType + "       \n";
+            errMsg += "Mensaje: " + args.ErrorMessage + "     \n";
+
+            if (errorType == "ParserError") {
+                errMsg += "Archivo: " + args.xamlFile + "     \n";
+                errMsg += "Línea: " + args.lineNumber + "     \n";
+                errMsg += "Posición: " + args.charPosition + "     \n";
+            }
+            else if (errorType == "RuntimeError") {
+                if (args.lineNumber != 0) {
+                    errMsg += "Línea: " + args.lineNumber + "     \n";
+                    errMsg += "Posición: " + args.charPosition + "     \n";
+                }
+                errMsg += "MethodName: " + args.methodName + "     \n";
+            }
+
+            throw new Error(errMsg);
+        }
+    </script>
+    <style type="text/css">
+        #preview
+        {
+            position: absolute;
+            border: 1px solid #ccc;
+            background: #333;
+            padding: 5px;
+            display: none;
+        }
+        #preview
+        {
+            cursor: default;
+        }
+    </style>
+    <script type="text/javascript">
+        /*
+        * Image preview script 
+        */
+
+        this.imagePreview = function () {
+            /* CONFIG */
+
+            xOffset = 50;
+            yOffset = -105;
+
+            /* END CONFIG */
+            $("a.preview").hover(function (e) {
+                this.t = this.title;
+                this.title = "";
+                var c = (this.t != "") ? "<br/>" + this.t : "";
+                var index = this.href.lastIndexOf('/');
+                var ref = this.href.substring(0, index + 1) + 'Thumbnails/' + this.href.substring(index + 1, this.href.length);
+                $("body").append("<p id='preview'><img src='" + ref + "' alt='Image preview' />" + c + "</p>");
+                $("#preview")
+            .css("top", (e.pageY - xOffset) + "px")
+            .css("left", (e.pageX + yOffset) + "px")
+            .fadeIn("fast");
+            },
+    function () {
+        this.title = this.t;
+        $("#preview").remove();
+    });
+            $("a.preview").mousemove(function (e) {
+                $("#preview")
+            .css("top", (e.pageY - xOffset) + "px")
+            .css("left", (e.pageX + yOffset) + "px");
+            });
+        };
+
+
+        // starting the script on page load
+        $(document).ready(function () {
+            imagePreview();
+        });
+    </script>
+</head>
+<body>
+    <form id="MasterForm" runat="server">
+    <div id="container" class="MasterForm">
+        <div id="masthead">
+            <h1>
+                <object id="flash1" data="Flash/BannerPrincipal.swf" style="width: 960px; height: 338px;
+                    top: 0;" type="application/x-shockwave-flash">
+                    <param name="movie" value="BannerPrincipal2011.swf" />
+                    <param name="quality" value="High" />
+                    <param name="wmode" value="transparent" />
+                </object>
+            </h1>
+        </div>
+    </div>
+    <div style="margin-bottom: 10px;">
+        <div id="GoogleTranslator" style="width: 140px; height: 20px; margin-left: 800px">
+            <div id="google_translate_element">
+            </div>
+            <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        </div>
+        <p style="color: White; font-size: x-small; margin-top: -20px">
+            Contador de visitas</p>
+        <a href="http://br.web-counter.net" title="contador de visitas">
+            <img src="http://www.web-counter.net/count_20091204.php?c=1gQePRZ8921" style="border-top-width: 0px;
+                border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial;
+                border-color: initial; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;
+                padding-left: 0px; margin-top: -10px; margin-right: 0px; margin-bottom: 0px;
+                margin-left: 0px;" alt="contador de visitas" />
+        </a>
+    </div>
+    <div>
+        <ul class="Navigator">
+            <li><a href="Default.aspx" class="Anoticias">
+                <img alt="" src="Button images/BtnNoticias_over.png" style="display: none" /></a></li>
+            <li><a href="Historia.aspx" class="Ahistoria">
+                <img alt="" src="Button images/BtnHistoria_over.png" style="display: none" /></a></li>
+            <li><a href="Objetivos.aspx" class="Aobjetivos">
+                <img alt="" src="Button images/BtnObjetivos_over.png" style="display: none" /></a></li>
+            <li><a href="Filosofia.aspx" class="Afilosofia">
+                <img alt="" src="Button images/BtnFilosofia_over.png" style="display: none" /></a></li>
+            <li><a href="Danes.aspx" class="Adanes">
+                <img alt="" src="Button images/BtnDanes_over.png" style="display: none" /></a></li>
+            <li><a href="Fotos.aspx" class="Afotos">
+                <img alt="" src="Button images/BtnFotos_over.png" style="display: none" /></a></li>
+            <li><a href="PrensaNew.aspx" class="Aprensa">
+                <img alt="" src="Button images/BtnPrensa_over.png" style="display: none" /></a></li>
+            <li><a href="Radio.aspx" class="Aradio">
+                <img alt="" src="Button images/BtnRadio_over.png" style="display: none" /></a></li>
+            <li><a href="Productos.aspx" class="Aproductos">
+                <img alt="" src="Button images/BtnProductos_over.png" style="display: none" /></a></li>
+            <li><a href="Links.aspx" class="Alinks">
+                <img alt="" src="Button images/BtnLinks_over.png" style="display: none" /></a></li>
+            <li><a href="Contactos.aspx" class="Acontacto">
+                <img alt="" src="Button images/BtnContacto_over.png" style="display: none" /></a></li>
+            <li>
+                <h1>
+                    <object id="Object3" data="Flash/RadioPromo.swf" type="application/x-shockwave-flash"
+                        style="width: 155px">
+                        <param name="movie" value="RadioPromo.swf" />
+                        <param name="quality" value="High" />
+                        <param name="wmode" value="transparent" />
+                    </object>
+                </h1>
+            </li>
+            <li>
+                <h1>
+                    <object id="Object4" data="Flash/gtsjuego.swf" type="application/x-shockwave-flash"
+                        style="width: 155px; margin-top: 150px">
+                        <param name="movie" value="gtsjuego.swf" />
+                        <param name="quality" value="High" />
+                        <param name="wmode" value="transparent" />
+                    </object>
+                </h1>
+            </li>
+        </ul>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <ul class="Advertisement">
+            <li>
+                <table class="Photos">
+                    <tr>
+                        <th>
+                            Evento
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%--<a  href="Images/Proximos eventos/1-posterweb-laguna2012.jpg" class="preview" target="_blank" style="color: white; text-decoration: none">
+                                
+                            </a>--%>
+                            Copa Nacional<br />
+                            Diego Pereira
+                        </td>
+                        <td>
+                            19/05/2013
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%--<a href="Images/Proximos eventos/Seminario Chile 2012 - 2 WEB.jpg" class="preview"
+                                target="_blank" style="color: white; text-decoration: none"></a>--%>
+                            Campeonato<br />
+                            Mundial<br />
+                            CHIPRE 2013
+                        </td>
+                        <td>
+                            19/06/2013 -<br />
+                            05/07/2013
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%--<a href="Images/Proximos eventos/3-Exhibicion 2012 Poster Web.jpg" class="preview"
+                                target="_blank" style="color: white; text-decoration: none"></a>--%>
+                            Seminario<br />
+                            Ho Sin Sul
+                        </td>
+                        <td>
+                            07/09/2013
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%--<a href="Images/Proximos eventos/canada 2012 web.jpg" class="preview" target="_blank"
+                                style="color: white; text-decoration: none"></a>--%>
+                            Campeonato<br />
+                            Sudamericano<br />
+                            Chile 2013
+                        </td>
+                        <td>
+                            11-13/10/2013
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%--<a href="Images/Proximos eventos/5-seminario arbitros 2012 poster Web.jpg" class="preview"
+                                target="_blank" style="color: white; text-decoration: none"></a>--%>
+                            Examen de
+                            <br />
+                            Danes
+                        </td>
+                        <td>
+                            02/11/2013
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%--<a href="Images/Proximos eventos/6-3cstb poster web.jpg" class="preview" target="_blank"
+                                style="color: white; text-decoration: none"></a>--%>
+                            Exhibición<br />
+                                Brisas 2013
+                        </td>
+                        <td>
+                            Noviembre 2013
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Cena Fin<br />
+                            de Año
+                        </td>
+                        <td>
+                            07/12/2013
+                        </td>
+                    </tr>
+                </table>
+            </li>
+            <li><a href="http://http://www.facebook.com/group.php?gid=246564225300">
+                <img src="Images/facebooklink.png" alt="Ícono Fecabook" /></a></li>
+            <li><a href="http://www.gtftaekwondo.com/">
+                <img alt="Logo GTF" src="Images/img0105.png" />
+                <br />
+                <marquee direction="left" height="19" scrolldelay="90" scrollamount="6" behavior="scroll"
+                    loop="0" style="background-color: #0278ff; width: 150px" id="Marquee2">
+                        <font style="font-size:15px" color="#FFFFFF" face="Times New Roman">
+                            <b>VISITA EL SITIO OFICIAL DE LA GLOBAL TAEKWON-DO FEDERATION</b>
+                        </font>
+                    </marquee>
+            </a></li>
+            <li>
+                <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
+                    width="170px" height="175px" style="margin-left: 5px">
+                    <param name="source" value="ClientBin/LittlePhotoGallery.xap" />
+                    <param name="onError" value="onSilverlightError" />
+                    <param name="background" value="white" />
+                    <param name="minRuntimeVersion" value="3.0.40818.0" />
+                    <param name="autoUpgrade" value="true" />
+                </object>
+                <iframe id="_sl_historyFrame" style="visibility: hidden; height: 0px; width: 0px;
+                    border: 0px"></iframe>
+                <br />
+                <a href="Fotos.aspx" class="Aclickhere">Fotos
+                    <img alt="" src="Button images/BtnClickHere_over.png" style="display: none" /></a></li>
+            <li style="display: none">Juego</li>
+            <li><a href="http://www.ltbstudio.com.ar">
+                <img alt="Logo LOOK THE BEAR producciones" src="Images/ltblogo.png" style="margin-top: 20px" /></a></li>
+        </ul>
+    </div>
+    <div id="footer" class="Footer">
+        <p style="text-decoration: none; text-align: center; font-size: x-small">
+            Copyrigth 2011&copy; <a href="http://www.ltbstudio.com.ar">LTBStudio</a>
+        </p>
+    </div>
+    </form>
+</body>
+</html>

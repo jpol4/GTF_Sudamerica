@@ -1,0 +1,87 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="GalleryMasterPage.master.cs"
+    Inherits="MasterPages_GalleryMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>GTF - Sudam&eacute;rica .::| |::.</title>
+    <link rel="stylesheet" href="../Styles/Display.css" type="text/css" />
+    <link rel="stylesheet" href="../Styles/Layout.css" type="text/css" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/ico" />
+    <script type="text/javascript" src="../Scripts/jquery.lightbox-0.5.pack.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script type="text/javascript" src="Silverlight.js"></script>
+    <script type="text/javascript">
+        function onSilverlightError(sender, args) {
+            var appSource = "";
+            if (sender != null && sender != 0) {
+                appSource = sender.getHost().Source;
+            }
+
+            var errorType = args.ErrorType;
+            var iErrorCode = args.ErrorCode;
+
+            if (errorType == "ImageError" || errorType == "MediaError") {
+                return;
+            }
+
+            var errMsg = "Error no manejado en la aplicación Silverlight " + appSource + "\n";
+
+            errMsg += "Código: " + iErrorCode + "    \n";
+            errMsg += "Categoría: " + errorType + "       \n";
+            errMsg += "Mensaje: " + args.ErrorMessage + "     \n";
+
+            if (errorType == "ParserError") {
+                errMsg += "Archivo: " + args.xamlFile + "     \n";
+                errMsg += "Línea: " + args.lineNumber + "     \n";
+                errMsg += "Posición: " + args.charPosition + "     \n";
+            }
+            else if (errorType == "RuntimeError") {
+                if (args.lineNumber != 0) {
+                    errMsg += "Línea: " + args.lineNumber + "     \n";
+                    errMsg += "Posición: " + args.charPosition + "     \n";
+                }
+                errMsg += "MethodName: " + args.methodName + "     \n";
+            }
+
+            throw new Error(errMsg);
+        }
+    </script>
+    <style type="text/css">
+        table
+        {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form id="MasterForm" runat="server">
+    <div id="container" class="MasterForm">
+        <div id="masthead">
+            <h1>
+                <object id="flash1" data="Flash/BannerPrincipal.swf" style="width: 960px; height: 338px;
+                    top: 0;" type="application/x-shockwave-flash">
+                    <param name="movie" value="BannerPrincipal2011.swf" />
+                    <param name="quality" value="High" />
+                    <param name="wmode" value="transparent" />
+                </object>
+            </h1>
+        </div>
+    </div>
+    <div>
+        <ul class="Navigator">
+            <li><a href="Fotos.aspx" class="ABack" style="z-index: 1">
+                <img alt="" src="Button images/BtnVolver_over.png" style="display: none" /></a></li>
+        </ul>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+    </div>
+    <div id="footer" class="Footer">
+        <p style="text-decoration: none; text-align: center; font-size: x-small">
+            Copyrigth 2011&copy; <a href="http://www.lookthebear.com.ar">LTB Producciones</a>
+        </p>
+    </div>
+    </form>
+</body>
+</html>

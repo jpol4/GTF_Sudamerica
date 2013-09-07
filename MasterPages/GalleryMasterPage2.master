@@ -1,0 +1,345 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="GalleryMasterPage2.master.cs"
+    Inherits="MasterPages_GalleryMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title></title>
+    <link rel="stylesheet" href="../Styles/Display.css" type="text/css" />
+    <link rel="stylesheet" href="../Styles/Layout.css" type="text/css" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/ico" />
+    <script type="text/javascript" src="Scripts/jquery.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.lightbox-0.5.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Styles/jquery.lightbox-0.5.css" media="screen" />
+    <script type="text/javascript" src="Scripts/jmpNavigation-0.9.1.js"></script>
+    <script type="text/javascript" src="Scripts/tabsNavigator.js"></script>
+    <style type="text/css">
+        /* jQuery lightBox plugin - Gallery style */
+        #gallery
+        {
+            background-color: #444;
+            padding: 10px;
+            width: 520px;
+        }
+        #gallery ul
+        {
+            list-style: none;
+        }
+        #gallery ul li
+        {
+            display: inline;
+        }
+        #gallery ul img
+        {
+            border: 5px solid #3e3e3e;
+            border-width: 5px 5px 20px;
+        }
+        #gallery ul a:hover img
+        {
+            border: 5px solid #fff;
+            border-width: 5px 5px 20px;
+            color: #fff;
+        }
+        #gallery ul a:hover
+        {
+            color: #fff;
+        }
+    </style>
+    <style type="text/css">
+        .thul
+        {
+            font-family: Arial;
+            font-size: 10px;
+            color: #777777;
+        }
+        .thul a:link, .thul a:visited, .thul a:active, .thul a:hover
+        {
+            color: #777777;
+            text-decoration: none;
+        }
+        .mtab tr
+        {
+            height: 125px;
+        }
+        .ctab
+        {
+            width: 175px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .GalleryNavigator
+        {
+            width: 30px;
+            height: 30px;
+            border: 0px;
+        }
+    </style>
+    <script type="text/javascript" src="Silverlight.js"></script>
+    <script type="text/javascript">
+        function onSilverlightError(sender, args) {
+            var appSource = "";
+            if (sender != null && sender != 0) {
+                appSource = sender.getHost().Source;
+            }
+
+            var errorType = args.ErrorType;
+            var iErrorCode = args.ErrorCode;
+
+            if (errorType == "ImageError" || errorType == "MediaError") {
+                return;
+            }
+
+            var errMsg = "Error no manejado en la aplicación Silverlight " + appSource + "\n";
+
+            errMsg += "Código: " + iErrorCode + "    \n";
+            errMsg += "Categoría: " + errorType + "       \n";
+            errMsg += "Mensaje: " + args.ErrorMessage + "     \n";
+
+            if (errorType == "ParserError") {
+                errMsg += "Archivo: " + args.xamlFile + "     \n";
+                errMsg += "Línea: " + args.lineNumber + "     \n";
+                errMsg += "Posición: " + args.charPosition + "     \n";
+            }
+            else if (errorType == "RuntimeError") {
+                if (args.lineNumber != 0) {
+                    errMsg += "Línea: " + args.lineNumber + "     \n";
+                    errMsg += "Posición: " + args.charPosition + "     \n";
+                }
+                errMsg += "MethodName: " + args.methodName + "     \n";
+            }
+
+            throw new Error(errMsg);
+        }
+    </script>
+    <style type="text/css">
+        table
+        {
+            margin-left: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+        var cantPages = 0;
+        var currentPage = 1;
+        var cantImages = 0;
+        var relPathShow = '';
+        var relPathAnchor = relPathShow;
+
+        $(function () {
+            navigate(cantPages, currentPage, cantImages, relPathShow, relPathAnchor, 130);
+            $('#gallery a').lightBox({ fixedNavigation: true });
+            $('#poster a').lightBox({ fixedNavigation: true });
+            showDescription();
+            moveSelectors();
+        });
+
+        function goFirst() {
+            currentPage = 1;
+            navigate(cantPages, currentPage, cantImages, relPathShow, relPathAnchor, 130);
+        }
+
+        function goPrevious() {
+            if (currentPage == 1) {
+                return;
+            }
+            currentPage--;
+            navigate(cantPages, currentPage, cantImages, relPathShow, relPathAnchor, 130);
+        }
+
+        function goNext() {
+            if (currentPage == cantPages) {
+                return;
+            }
+            currentPage++;
+            navigate(cantPages, currentPage, cantImages, relPathShow, relPathAnchor, 130);
+        }
+        function goLast() {
+            currentPage = cantPages;
+            navigate(cantPages, currentPage, cantImages, relPathShow, relPathAnchor, 130);
+        }
+
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="MasterForm" runat="server">
+    <div id="container" class="MasterForm">
+        <div id="masthead">
+            <h1>
+                <object id="flash1" data="Flash/BannerPrincipal.swf" style="width: 960px; height: 338px;
+                    top: 0;" type="application/x-shockwave-flash">
+                    <param name="movie" value="BannerPrincipal2011.swf" />
+                    <param name="quality" value="High" />
+                    <param name="wmode" value="transparent" />
+                </object>
+            </h1>
+        </div>
+    </div>
+    <div>
+        <ul class="Navigator">
+            <li><a href="Fotos.aspx" class="ABack" style="z-index: 1">
+                <img alt="" src="Button images/BtnVolver_over.png" style="display: none" /></a></li>
+        </ul>
+        <asp:ContentPlaceHolder ID="GalleryTitle" runat="server">
+        </asp:ContentPlaceHolder>
+        <div id="tabSelector" class="tabSelector">
+            <span id="spanDescription" class="selector" onclick="showDescription()" style="background-image: url('Images/Tabs/Descripcion.png');">
+            </span><span id="spanLetter" class="selector" onclick="showLetter()" style="background-image: url('Images/Tabs/Carta.png');">
+            </span><span id="spanVideos" class="selector" onclick="showVideos()" style="background-image: url('Images/Tabs/Videos.png');">
+            </span><span id="spanPhotos" class="selector" onclick="showPhotos()" style="background-image: url('Images/Tabs/Fotos.png');">
+            </span>
+        </div>
+        <div class="container" id="descriptionDiv">
+            <asp:ContentPlaceHolder ID="EventDescription" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="container" id="letterDiv"><asp:ContentPlaceHolder ID="OrganizerLetter" runat="server">
+                 </asp:ContentPlaceHolder></div>
+        <div class="container" id="videosDiv"><asp:ContentPlaceHolder ID="Videos" runat="server">
+                 </asp:ContentPlaceHolder></div>
+        <div id="photosDiv" class="container">
+            <div align="center">
+                <a name="fotos">
+                    <table id="gallery" class="mtab" style="height: 500px; width: 700px;">
+                        <tr>
+                            <td class="ctab">
+                                <a href="" id="a1">
+                                    <img alt="" id="img1" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a2">
+                                    <img alt="" id="img2" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a3">
+                                    <img alt="" src="" id="img3" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a4">
+                                    <img alt="" src="" id="img4" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a5">
+                                    <img alt="" id="img5" src="" style="border: 0px" /></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ctab">
+                                <a href="" id="a6">
+                                    <img alt="" id="img6" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a7">
+                                    <img alt="" id="img7" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a8">
+                                    <img alt="" id="img8" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a9">
+                                    <img alt="" id="img9" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a10">
+                                    <img alt="" id="img10" src="" style="border: 0px" /></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ctab">
+                                <a href="" id="a11">
+                                    <img alt="" id="img11" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a12">
+                                    <img alt="" id="img12" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a13">
+                                    <img alt="" id="img13" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a14">
+                                    <img alt="" id="img14" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a15">
+                                    <img alt="" id="img15" src="" style="border: 0px" /></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ctab">
+                                <a href="" id="a16">
+                                    <img alt="" id="img16" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a17">
+                                    <img alt="" id="img17" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a18">
+                                    <img alt="" id="img18" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a19">
+                                    <img alt="" id="img19" src="" style="border: 0px" /></a>
+                            </td>
+                            <td class="ctab">
+                                <a href="" id="a20">
+                                    <img alt="" id="img20" src="" style="border: 0px" /></a>
+                            </td>
+                        </tr>
+                    </table>
+                </a>
+            </div>
+            <div align="center">
+                <table width="700" class="utab">
+                    <tr>
+                        <td width="30">
+                        </td>
+                        <td width="30">
+                        </td>
+                        <td width="30" rowspan="1">
+                            &nbsp;
+                        </td>
+                        <td width="30" rowspan="1">
+                            &nbsp;
+                        </td>
+                        <td width="460" rowspan="1">
+                            <p align="center">
+                            </p>
+                        </td>
+                        <td width="30">
+                            <a href="#fotos">
+                                <img alt="Primera página" src="Images/first.gif" class="GalleryNavigator" id="firstPageButton"
+                                    onclick="goFirst()" /></a>
+                        </td>
+                        <td width="30">
+                            <a href="#fotos">
+                                <img alt="Página anterior" src="Images/rev.gif" class="GalleryNavigator" id="previousPageButton"
+                                    onclick="goPrevious()" /></a>
+                        </td>
+                        <td width="30">
+                            <a href="#fotos">
+                                <img alt="Página siguiente" src="Images/for.gif" class="GalleryNavigator" id="nextPageButton"
+                                    onclick="goNext()" /></a>
+                        </td>
+                        <td width="30">
+                            <a href="#fotos">
+                                <img alt="Última página" src="Images/last.gif" class="GalleryNavigator" id="lastPageButton"
+                                    onclick="goLast()" /></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="footer" class="Footer">
+        <p style="text-decoration: none; text-align: center; font-size: x-small">
+            Copyrigth 2011&copy; <a href="http://www.lookthebear.com.ar">LTB Producciones</a>
+        </p>
+    </div>
+    </form>
+</body>
+</html>
