@@ -1,0 +1,25 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:LittlePhotoGallery.Controls">
+
+    <Style TargetType="Controls:Marquee">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Controls:Marquee">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer Width="Auto" Height="Auto" HorizontalContentAlignment="Stretch" 
+                             VerticalContentAlignment="Stretch" VerticalScrollBarVisibility="Disabled">
+                            <Canvas>
+                                <ContentPresenter  x:Name="PART_Content" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Canvas>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="LittlePhotoGallery.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="175" d:DesignWidth="170" Loaded="UserControl_Loaded" xmlns:Controls="clr-namespace:LittlePhotoGallery.Controls">
+    <UserControl.Resources>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+            <StackPanel  Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="#FF262626" >
+                <Border BorderThickness="5" Height="25" VerticalAlignment="Top" Background="Black" BorderBrush="#FF373737">
+            <Canvas>
+                <Image Name="ImageHeader" Stretch="UniformToFill" Source="/LittlePhotoGallery;component/Images/Header.png" />
+            </Canvas>
+        </Border>
+        <Border BorderThickness="5" Height="150" VerticalAlignment="Bottom">
+            <StackPanel>
+                <Controls:Marquee x:Name="marquee1" Height="130" Width="150" Margin="0,0,0,0">
+                    <ListBox 
+                ItemsPanel="{StaticResource ItemsPanelTemplate1}"
+                VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Margin="195,-7,0,0">
+                        <Image Margin="5,0,0,0" Source="Images/0.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/1.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/2.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/3.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/4.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/5.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/6.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/7.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/8.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/9.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/10.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/11.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/12.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/13.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/14.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/15.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/16.png" Stretch="None" VerticalAlignment="Center"/>
+                        <Image Margin="5,0,0,0" Source="Images/17.png" Stretch="None" VerticalAlignment="Center"/>
+                    </ListBox>
+                </Controls:Marquee>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>
